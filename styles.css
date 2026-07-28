@@ -1,0 +1,159 @@
+:root {
+  --color-ink:         #12141C; /* fond principal, sombre */
+  --color-ink-soft:    #1C1F2B; /* fond des cartes/sections alternées */
+  --color-paper:       #F0EDE4; /* fond clair, texte sur fond sombre */
+  --color-graphite:    #8890A0; /* texte secondaire, bordures */
+  --color-solder:      #E8871E; /* accent chaud — CTA, highlights */
+  --color-signal:      #5EEAD4; /* accent froid — liens, états actifs */
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* === Bouton hamburger === */
+.nav-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-ink-soft);
+  border: 1px solid var(--color-graphite);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.nav-toggle__bar {
+  width: 18px;
+  height: 2px;
+  background-color: var(--color-paper);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Transforme les 3 barres en croix quand le menu est ouvert */
+.nav-toggle.is-open .nav-toggle__bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.is-open .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.is-open .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* === Panneau de navigation (overlay plein écran) === */
+.site-nav {
+  position: fixed;
+  inset: 0; /* raccourci pour top/right/bottom/left: 0 */
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--color-ink);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.site-nav.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.site-nav a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-paper);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--color-signal);
+}
+
+.site-header__logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-paper);
+  text-decoration: none;
+}
+
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--color-ink);
+  overflow: hidden; /* évite les débordements du canvas */
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--color-ink) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.hero__cta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--color-signal);
+}
+.hero__cta--primary {
+    display: inline-block;
+    color: var(--color-solder);
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-ink-soft);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--color-graphite);
+}
+.hero__cta--secondary {
+  display: inline-block;
+  color: var(--color-paper);
+  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid var(--color-graphite);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hero__title,
+.hero__subtitle,
+.hero__description,
+.hero__cta-group {
+  position: relative;
+  z-index: 1;
+}
