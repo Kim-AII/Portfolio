@@ -168,4 +168,4 @@ function drawSensor() {
 }
 
 resizeSensor();
-drawSensor();
+drawSensor(); 
