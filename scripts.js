@@ -168,4 +168,49 @@ function drawSensor() {
 }
 
 resizeSensor();
-drawSensor(); 
+drawSensor();
+
+
+// === Trame de points du hero appliquée à la section Projets (sans ondes) ===
+
+const projetsCanvas = document.querySelector('.projets__canvas');
+if (projetsCanvas) {
+  const pctx = projetsCanvas.getContext('2d');
+  const pSpacing = 24;
+  const pMaxDistance = 150;
+
+  function resizeProjets() {
+    projetsCanvas.width = projetsCanvas.offsetWidth;
+    projetsCanvas.height = projetsCanvas.offsetHeight;
+  }
+
+  function drawProjets() {
+    pctx.clearRect(0, 0, projetsCanvas.width, projetsCanvas.height);
+
+    // Convertir la position de la souris (page) en coordonnées locales au canvas
+    const rect = projetsCanvas.getBoundingClientRect();
+    const localMouseX = mouse.x - rect.left;
+    const localMouseY = mouse.y - rect.top;
+
+    for (let x = 0; x < projetsCanvas.width; x += pSpacing) {
+      for (let y = 0; y < projetsCanvas.height; y += pSpacing) {
+        const dx = localMouseX - x;
+        const dy = localMouseY - y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const influence = Math.max(0, 1 - distance / pMaxDistance);
+        const radius = 1 + influence * 3;
+
+        pctx.beginPath();
+        pctx.arc(x, y, radius, 0, Math.PI * 2);
+        pctx.fillStyle = '#8890A0';
+        pctx.fill();
+      }
+    }
+
+    requestAnimationFrame(drawProjets);
+  }
+
+  window.addEventListener('resize', resizeProjets);
+  resizeProjets();
+  drawProjets();
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+  <title>Mes Projets — Hakim</title>
+  <meta name="description" content="Détail des projets de Hakim : développement web, IoT et design.">
+</head>
+<body>
+
+  <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
+  <a href="index.html#parcours">Parcours</a>
+  <a href="index.html#projets">Projets</a>
+  <a href="index.html#design">Design</a>
+  <a href="index.html#competences">Compétences & Expertise</a>
+  <a href="index.html#contact">Contact</a>
+</nav>
+
+  <main class="projets-page">
+  <a href="index.html" class="projets-page__back">&larr; Retour à l'accueil</a>
+  <h1 class="projets-page__title">Mes Projets</h1>
+
+  <div class="projets-page__grid">
+    <button class="projets-page__card" data-project="mentorlink">
+      <img src="images\mentorlink.png" alt="" class="projets-page__card-img">
+      <div class="projets-page__card-info">
+        <h2 class="projets-page__card-title">IFRI_MentorLink</h2>
+        <p class="projets-page__card-subtitle">Plateforme de mentorat étudiant</p>
+      </div>
+      <span class="projets-page__card-arrow">&#8599;</span>
+    </button>
+
+    <button class="projets-page__card" data-project="presidence">
+      <img src="images\presidence.png" alt="" class="projets-page__card-img">
+      <div class="projets-page__card-info">
+        <h2 class="projets-page__card-title">Mockup Présidence.bj</h2>
+        <p class="projets-page__card-subtitle">Refonte institutionnelle</p>
+      </div>
+      <span class="projets-page__card-arrow">&#8599;</span>
+    </button>
+
+  </div>
+</main>
+
+<!-- L'overlay : UN SEUL bloc, réutilisé pour les 5 projets -->
+<div class="project-overlay" id="project-overlay" aria-hidden="true">
+  <button class="project-overlay__close" aria-label="Fermer le détail">&times;</button>
+  <div class="project-overlay__content" id="project-overlay-content">
+    <!-- rempli dynamiquement par JS -->
+  </div>
+</div>
+
+    <footer class="site-footer">
+        <p class="site-footer__text">&copy; 2026 Hakim. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

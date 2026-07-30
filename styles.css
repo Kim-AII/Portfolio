@@ -182,6 +182,12 @@ h1, h2, h3 {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.hero__cta--primary:hover,
+.hero__cta--secondary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px var(--color-signal);
+}
+
 .hero__title {
   font-weight: 800;
   font-size: clamp(28px, 4vw, 52px);
@@ -320,11 +326,15 @@ h1, h2, h3 {
   justify-content: center;
   overflow: hidden;
   background-color: var(--color-ink);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .projets__canvas {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
 }
 
@@ -353,4 +363,174 @@ h1, h2, h3 {
   border-radius: 4px;
   border: 1px solid var(--color-graphite);
   transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.projets__cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px var(--color-solder);
+}
+
+.projets-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.projets-page__card {
+  position: relative;
+  display: block;
+  text-align: left;
+  background-color: var(--color-ink-soft);
+  border: 1px solid var(--color-graphite);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.projets-page__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-signal);
+}
+
+.projets-page__card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover; /* recadre l'image proprement, sans la déformer */
+  display: block;
+}
+
+.projets-page__card-info {
+  padding: 1.25rem;
+}
+
+.projets-page__card-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-paper);
+}
+
+.projets-page__card-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-graphite);
+}
+
+.projets-page__card-arrow {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--color-solder);
+  font-size: 1.2rem;
+}
+
+/* === Overlay de détail === */
+.project-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background-color: var(--color-ink);
+  overflow-y: auto;
+  padding: 4rem 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.project-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-overlay__close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-graphite);
+  background-color: var(--color-ink-soft);
+  color: var(--color-paper);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.project-overlay__content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.project-overlay__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--color-signal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.project-overlay__title {
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 0.5rem 0 1rem;
+}
+
+.project-overlay__tagline {
+  color: var(--color-graphite);
+  margin-bottom: 1.5rem;
+}
+
+.project-overlay__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.project-overlay__tags span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--color-graphite);
+  border-radius: 100px;
+  color: var(--color-graphite);
+}
+
+.project-overlay__section {
+  margin-bottom: 2rem;
+}
+
+.project-overlay__section h3 {
+  color: var(--color-solder);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-overlay__stack span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+  background-color: var(--color-ink-soft);
+  border: 1px solid var(--color-graphite);
+  border-radius: 6px;
+  color: var(--color-signal);
+  margin: 0 0.5rem 0.5rem 0;
+  display: inline-block;
+}
+
+.project-overlay__links a {
+  display: inline-block;
+  margin-right: 1rem;
+  color: var(--color-paper);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--color-graphite);
+  border-radius: 6px;
+}
+
+.project-overlay__links a:hover {
+  border-color: var(--color-solder);
+  color: var(--color-solder);
 }
