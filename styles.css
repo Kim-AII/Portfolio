@@ -206,8 +206,216 @@ h1, h2, h3 {
   position: relative;
   z-index: 1;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
+.hero__title-visible::after {
+  content: '|';
+  color: var(--color-signal);
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* === Presentation === */
+
+.presentation {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.presentation__text {
+  flex: 1.2;
+}
+
+.presentation__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-signal);
+  margin-bottom: 0.75rem;
+}
+
+.presentation__title {
+  font-size: clamp(24px, 3vw, 34px);
+  margin-bottom: 1.25rem;
+  line-height: 1.25;
+}
+
+.presentation__body {
+  color: var(--color-graphite);
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+.presentation__visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  order: -1; /* passe avant .presentation__text visuellement, sans toucher au HTML */
+}
+
+/* Le cadre placeholder, avec des coins façon "viseur technique" plutôt qu'un simple rectangle vide */
+.presentation__avatar-placeholder {
+  position: relative;
+  width: 280px;
+  height: 340px;
+  border: 1px dashed var(--color-graphite);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-ink-soft);
+}
+
+/* 4 coins en L, façon viseur d'appareil photo/scanner */
+.presentation__avatar-placeholder::before,
+.presentation__avatar-placeholder::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--color-solder);
+  border-style: solid;
+}
+
+.presentation__avatar-placeholder::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+.presentation__avatar-placeholder::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+.presentation__avatar-placeholder-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--color-graphite);
+  text-align: center;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .presentation {
+    flex-direction: column;
+    text-align: center;
+  }
+  .presentation__body {
+    margin: 0 auto;
+  }
+}
 /* === Parcours === */
+.parcours__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+/* --- Colonne 1 : timeline --- */
+.parcours__timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.parcours__timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-signal);
+  box-shadow: 0 0 8px var(--color-signal);
+}
+
+.parcours__milestone {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.parcours__milestone-marker {
+  position: absolute;
+  left: -2rem;
+  top: 0.35rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-solder);
+  box-shadow: 0 0 6px var(--color-solder);
+}
+
+.parcours__milestone-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--color-signal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.parcours__milestone-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.parcours__milestone-text {
+  color: var(--color-graphite);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --- Colonne 2 : losanges, maintenant empilés verticalement --- */
+.parcours__strengths {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* changé : était "row" avant */
+  align-items: center;
+  gap: 2rem;
+}
+
+/* La ligne de connexion devient verticale au lieu d'horizontale */
+.parcours__strengths::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: var(--color-signal);
+  box-shadow: 0 0 8px var(--color-signal);
+  z-index: 0;
+}
+
+/* Les losanges gardent leur style existant (diamond, content, pulse...) inchangé */
+
+@media (max-width: 900px) {
+  .parcours__columns {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
 .parcours__title {
   font-weight: 800;
   font-size: clamp(28px, 4vw, 52px);
@@ -219,38 +427,6 @@ h1, h2, h3 {
   display: flex;
   position: relative;
   z-index: 1;
-}
-
-.parcours__description {
-  font-family: 'JetBrains Mono', monospace;
-  text-align: center;
-  padding: 20px;
-  margin: 20px auto;
-  width: fit-content;
-  border: 3px solid var(--color-signal);  
-  border-radius: 10px;
-  color: var(--color-paper);               
-  background-color: var(--color-ink-soft); 
-}
-
-.parcours__strengths {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3rem 4rem; /*pour absorber le débordement des losanges tournés */
-}
-
-.parcours__strengths::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 2px;
-  background-color: var(--color-signal);
-  box-shadow: 0 0 8px var(--color-signal);
-  z-index: 0;
 }
 
 .parcours__strength {
@@ -535,6 +711,119 @@ h1, h2, h3 {
 .project-overlay__links a:hover {
   border-color: var(--color-solder);
   color: var(--color-solder);
+}
+.project-overlay__process {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.project-overlay__thumb {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  border: 1px solid var(--color-graphite);
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  font-family: inherit;
+  color: var(--color-paper);
+  transition: border-color 0.25s ease;
+}
+
+.project-overlay__thumb:hover {
+  border-color: var(--color-signal);
+}
+
+.project-overlay__thumb img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.project-overlay__thumb-placeholder {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-ink);
+  color: var(--color-graphite);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.project-overlay__thumb-caption {
+  font-size: 0.7rem;
+  padding: 0.5rem;
+  color: var(--color-graphite);
+  text-align: left;
+}
+
+/* === Lightbox === */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 400; /* au-dessus de .project-overlay qui est à 300 */
+  background-color: rgba(18, 20, 28, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox__inner {
+  max-width: 80vw;
+  text-align: center;
+}
+
+.lightbox__inner img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
+}
+
+.lightbox__placeholder {
+  width: 400px;
+  max-width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-ink-soft);
+  border: 1px dashed var(--color-graphite);
+  border-radius: 8px;
+  color: var(--color-graphite);
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+}
+
+.lightbox__caption {
+  margin-top: 1rem;
+  color: var(--color-paper);
+  font-size: 0.9rem;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-graphite);
+  background-color: var(--color-ink-soft);
+  color: var(--color-paper);
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 /* === Header positionning fix === */

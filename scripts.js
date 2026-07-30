@@ -1,5 +1,5 @@
 // ============================================
-// Menu hamburger (présent sur toutes les pages)
+// Menu hamburger (toutes les pages)
 // ============================================
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.site-nav');
@@ -11,20 +11,52 @@ if (toggle && nav) {
     toggle.classList.toggle('is-open');
     nav.classList.toggle('is-open');
   });
+}
 
-  // Fermer le nav si on clique sur un lien
-  nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.classList.remove('is-open');
-      nav.classList.remove('is-open');
-    });
+
+// ============================================
+// Retour en haut de page (toutes les pages)
+// ============================================
+const backToTop = document.querySelector('.site-footer__back-to-top');
+
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
 
 // ============================================
-// Fond en trame de points, réutilisable
+// Effet machine à écrire du titre du hero (index.html uniquement)
+// ============================================
+function typewriter(el, text, speed = 60) {
+  let i = 0;
+  el.textContent = '';
+
+  function type() {
+    if (i < text.length) {
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+
+  type();
+}
+
+const heroTitleVisible = document.querySelector('.hero__title-visible');
+if (heroTitleVisible) {
+  const prefersReducedMotionTyping = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotionTyping) {
+    heroTitleVisible.textContent = 'Développeur & Designer.';
+  } else {
+    typewriter(heroTitleVisible, 'Développeur & Designer.');
+  }
+}
+
+
+// ============================================
+// Fond en trame de points, réutilisable (index.html uniquement)
 // ============================================
 function initDotGrid(canvasEl, waves = null) {
   const ctx = canvasEl.getContext('2d');
@@ -99,8 +131,6 @@ function initDotGrid(canvasEl, waves = null) {
   draw();
 }
 
-// Le fond du hero reçoit un tableau d'ondes partagé avec son circuit néon
-// heroWaves est déclaré au niveau module pour être accessible partout
 const heroWaves = [];
 
 const heroCanvas = document.querySelector('.hero__canvas');
@@ -108,7 +138,6 @@ if (heroCanvas) {
   initDotGrid(heroCanvas, heroWaves);
 }
 
-// Le fond de la section Projets (page d'accueil) n'a pas d'ondes
 const projetsCanvas = document.querySelector('.projets__canvas');
 if (projetsCanvas) {
   initDotGrid(projetsCanvas, null);
@@ -116,7 +145,7 @@ if (projetsCanvas) {
 
 
 // ============================================
-// Circuit néon animé du hero (uniquement sur index.html)
+// Circuit néon animé du hero (index.html uniquement)
 // ============================================
 const sensorCanvas = document.querySelector('.hero__sensor');
 
@@ -139,8 +168,6 @@ if (sensorCanvas) {
     sensorMouse.x = e.clientX;
     sensorMouse.y = e.clientY;
   });
-
-  window.addEventListener('resize', resizeSensor);
 
   function drawSensor() {
     sctx.clearRect(0, 0, sensorCanvas.width, sensorCanvas.height);
@@ -210,7 +237,7 @@ if (sensorCanvas) {
 
 
 // ============================================
-// Galerie de projets + overlay de détail (uniquement sur projet.html)
+// Données des projets (projets.html uniquement, mais déclaré ici sans risque)
 // ============================================
 const projectsData = {
   mentorlink: {
@@ -218,77 +245,136 @@ const projectsData = {
     title: "IFRI_MentorLink",
     tagline: "Une plateforme web qui met en relation étudiants et mentors au sein de l'IFRI.",
     tags: ["Flask", "MySQL", "HTML/CSS/JS", "Bootstrap"],
-    context: "À l'IFRI, l'entraide entre étudiants existe déjà, mais reste informelle. Les étudiants en difficulté ne savent pas toujours vers qui se tourner.",
+    context: "À l'IFRI, l'entraide entre étudiants existe déjà, mais reste informelle. [Développe le contexte ici]",
+    problem: "[Quel problème précis ce projet résout-il ? Quelles étaient les contraintes de départ ?]",
+    approach: "[Comment as-tu abordé le problème ? Quelles étapes as-tu suivies, seul ou en équipe ?]",
+    technicalChoices: "[Pourquoi Flask plutôt qu'autre chose ? Pourquoi cet algorithme de matching pondéré ?]",
+    difficulties: "[Qu'est-ce qui a été le plus dur ? Un bug tenace, une contrainte de temps ?]",
+    result: "[Qu'est-ce que le projet a produit concrètement ? Note, retour du jury, ce que tu as appris ?]",
     role: [
       "Développement backend et frontend au sein d'une équipe",
       "Algorithme de matching pondéré, authentification, messagerie par polling",
       "Préparation approfondie de la soutenance orale"
     ],
     stack: ["Python / Flask", "MySQL", "HTML5", "CSS3", "JavaScript", "Bootstrap"],
+    process: [
+      { type: "sketch", caption: "Croquis initial de l'algorithme de matching", src: null },
+      { type: "figma", caption: "Maquette Figma — page de profil", src: null },
+      { type: "architecture", caption: "Schéma d'architecture backend", src: null },
+      { type: "github", caption: "Capture du dépôt GitHub", src: null }
+    ],
     links: [
       { label: "Voir le code", url: "#" },
       { label: "Voir la démo", url: "#" }
     ]
   },
+
   presidence: {
     eyebrow: "Exercice de style front-end",
     title: "Mockup Présidence.bj",
     tagline: "Refonte visuelle et structurelle d'un site institutionnel.",
     tags: ["HTML", "CSS", "BEM"],
     context: "Exercice sur la rigueur d'un design gouvernemental — reproduire fidèlement un site institutionnel complexe.",
+    problem: "[Quelle difficulté précise pose la reproduction fidèle d'un site institutionnel complexe ?]",
+    approach: "[Comment as-tu découpé le travail ? Analyse du site source, wireframes, intégration ?]",
+    technicalChoices: "[Pourquoi la méthodologie BEM ici en particulier ?]",
+    difficulties: "[Qu'est-ce qui a été le plus dur à reproduire fidèlement ?]",
+    result: "[Résultat final : fidélité, responsive, ce que ça a démontré de tes compétences ?]",
     role: [
       "Développement front-end complet",
       "Architecture CSS avec méthodologie BEM pour une structure maintenable"
     ],
     stack: ["HTML5", "CSS3 (BEM)"],
+    process: [
+      { type: "sketch", caption: "Analyse de la structure du site source", src: null },
+      { type: "architecture", caption: "Plan de la nomenclature BEM", src: null }
+    ],
     links: [{ label: "Voir la démo", url: "#" }]
   },
+
   coach: {
     eyebrow: "Projet personnel",
     title: "Landing Page Coach Sportif",
     tagline: "Une landing page complète en français pour un coach sportif, de la conception à l'intégration.",
     tags: ["HTML", "CSS", "Design"],
     context: "Créer une page de conversion efficace pour un coach sportif, avec un système de design pensé pour l'énergie et l'action.",
+    problem: "[Quel était l'objectif de conversion précis ? Quelle contrainte de départ ?]",
+    approach: "[Comment as-tu conçu le parcours visiteur ? Wireframe, choix de palette, hiérarchie visuelle ?]",
+    technicalChoices: "[Pourquoi ce système dark/vert/orange ? Pourquoi cette structure de page ?]",
+    difficulties: "[Qu'est-ce qui a été le plus dur à équilibrer visuellement ou techniquement ?]",
+    result: "[Résultat : page livrée, retour éventuel, ce que tu as appris sur la conversion ?]",
     role: [
       "Design du système visuel dark/vert/orange",
       "Intégration HTML/CSS complète, pensée pour la conversion"
     ],
     stack: ["HTML5", "CSS3"],
+    process: [
+      { type: "sketch", caption: "Wireframe initial", src: null },
+      { type: "figma", caption: "Maquette du système de couleurs", src: null }
+    ],
     links: [{ label: "Voir la démo", url: "#" }]
   },
+
   pir: {
     eyebrow: "Stage CodeAlpha — Smart Agriculture",
     title: "Capteur PIR + LED — Simulation IoT",
     tagline: "Simulation d'un système de détection de mouvement, pensée dans une logique smart agriculture / domotique.",
     tags: ["Arduino", "Tinkercad", "C/C++"],
     context: "Valider la logique de détection de mouvement avant un déploiement matériel réel, dans le cadre du stage IoT chez CodeAlpha.",
+    problem: "[Quel problème concret la détection de mouvement résout-elle en smart agriculture ?]",
+    approach: "[Comment as-tu conçu le circuit ? Étapes de prototypage sur Tinkercad ?]",
+    technicalChoices: "[Pourquoi un PIR plutôt qu'un autre type de capteur ? Choix du microcontrôleur ?]",
+    difficulties: "[Quel bug ou quelle contrainte matérielle as-tu dû déboguer ?]",
+    result: "[Simulation validée, ce que ça a confirmé avant un déploiement réel ?]",
     role: [
       "Conception et prototypage sur Tinkercad",
       "Écriture et débogage du code Arduino associé"
     ],
     stack: ["Arduino", "Tinkercad", "C/C++ embarqué"],
+    process: [
+      { type: "sketch", caption: "Schéma du circuit PIR + LED", src: null },
+      { type: "architecture", caption: "Diagramme de la logique de détection", src: null }
+    ],
     links: [{ label: "Voir la simulation Tinkercad", url: "#" }]
   },
+
   mqtt: {
     eyebrow: "Stage CodeAlpha — Smart Agriculture",
     title: "IoT Data Pipeline (MQTT Simulation)",
     tagline: "Simulation d'un pipeline de données IoT utilisant le protocole MQTT.",
     tags: ["Python", "MQTT", "Mosquitto"],
     context: "Simuler la communication entre capteurs et serveur via MQTT, pour valider la logique avant un déploiement matériel.",
+    problem: "[Quel problème de communication entre capteurs et serveur ce pipeline résout-il ?]",
+    approach: "[Comment as-tu structuré les topics MQTT ? Étapes de mise en place du broker simulé ?]",
+    technicalChoices: "[Pourquoi MQTT plutôt qu'un autre protocole ? Pourquoi Mosquitto ?]",
+    difficulties: "[Quelle difficulté as-tu rencontrée dans la synchronisation pub/sub ?]",
+    result: "[Pipeline validé, ce que ça a démontré avant un déploiement matériel réel ?]",
     role: [
       "Développement d'un broker MQTT simulé",
       "Scripts de publication et de souscription aux topics",
       "Visualisation des données reçues"
     ],
     stack: ["Python", "MQTT", "Mosquitto"],
+    process: [
+      { type: "architecture", caption: "Schéma du pipeline de données", src: null },
+      { type: "github", caption: "Capture du dépôt GitHub", src: null }
+    ],
     links: [{ label: "Voir le dépôt GitHub", url: "#" }]
   }
 };
 
+
+// ============================================
+// Galerie de projets + overlay de détail + lightbox (projets.html uniquement)
+// ============================================
 const overlay = document.getElementById('project-overlay');
 const overlayContent = document.getElementById('project-overlay-content');
 const closeBtn = document.querySelector('.project-overlay__close');
 const cards = document.querySelectorAll('.projets-page__card');
+
+const lightbox = document.getElementById('lightbox');
+const lightboxContent = document.getElementById('lightbox-content');
+const lightboxClose = document.querySelector('.lightbox__close');
 
 if (overlay && overlayContent && closeBtn && cards.length > 0) {
 
@@ -311,6 +397,31 @@ if (overlay && overlayContent && closeBtn && cards.length > 0) {
       </div>
 
       <div class="project-overlay__section">
+        <h3>Le problème</h3>
+        <p>${data.problem}</p>
+      </div>
+
+      <div class="project-overlay__section">
+        <h3>Ma démarche</h3>
+        <p>${data.approach}</p>
+      </div>
+
+      <div class="project-overlay__section">
+        <h3>Choix techniques</h3>
+        <p>${data.technicalChoices}</p>
+      </div>
+
+      <div class="project-overlay__section">
+        <h3>Difficultés surmontées</h3>
+        <p>${data.difficulties}</p>
+      </div>
+
+      <div class="project-overlay__section">
+        <h3>Résultat</h3>
+        <p>${data.result}</p>
+      </div>
+
+      <div class="project-overlay__section">
         <h3>Mon rôle</h3>
         <ul>${data.role.map(r => `<li>${r}</li>`).join('')}</ul>
       </div>
@@ -322,6 +433,21 @@ if (overlay && overlayContent && closeBtn && cards.length > 0) {
         </div>
       </div>
 
+      <div class="project-overlay__section">
+        <h3>Le processus</h3>
+        <div class="project-overlay__process">
+          ${data.process.map((p, index) => `
+            <button class="project-overlay__thumb" data-process-index="${index}" data-project-id="${id}">
+              ${p.src
+                ? `<img src="${p.src}" alt="${p.caption}">`
+                : `<span class="project-overlay__thumb-placeholder">${p.type}</span>`
+              }
+              <span class="project-overlay__thumb-caption">${p.caption}</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+
       <div class="project-overlay__links">
         ${data.links.map(l => `<a href="${l.url}">${l.label} &#8599;</a>`).join('')}
       </div>
@@ -329,13 +455,11 @@ if (overlay && overlayContent && closeBtn && cards.length > 0) {
 
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
   }
 
   function closeProject() {
     overlay.classList.remove('is-open');
     overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
   }
 
   cards.forEach((card) => {
@@ -344,47 +468,39 @@ if (overlay && overlayContent && closeBtn && cards.length > 0) {
 
   closeBtn.addEventListener('click', closeProject);
 
-  // Fermer en cliquant sur le fond de l'overlay
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeProject();
+  function openLightbox(projectId, index) {
+    const item = projectsData[projectId].process[index];
+    lightboxContent.innerHTML = `
+      ${item.src
+        ? `<img src="${item.src}" alt="${item.caption}">`
+        : `<div class="lightbox__placeholder">${item.type}</div>`
+      }
+      <p class="lightbox__caption">${item.caption}</p>
+    `;
+    lightbox.classList.add('is-open');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+  }
+
+  // Délégation d'événements : on écoute le conteneur stable, pas les vignettes
+  // (qui n'existent qu'après l'ouverture d'un projet, donc pas au chargement de la page)
+  overlayContent.addEventListener('click', (e) => {
+    const thumb = e.target.closest('.project-overlay__thumb');
+    if (thumb) {
+      openLightbox(thumb.dataset.projectId, thumb.dataset.processIndex);
+    }
   });
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeProject();
-  });
-}
-
-
-// ============================================
-// Animation d'apparition au scroll (toutes les pages)
-// ============================================
-const revealEls = document.querySelectorAll(
-  '.parcours__strength, .competences__item, .projets-page__card, .contact__form'
-);
-
-if (revealEls.length > 0 && 'IntersectionObserver' in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-
-  revealEls.forEach((el) => {
-    el.classList.add('reveal');
-    observer.observe(el);
-  });
-}
-
-const backToTop = document.querySelector('.site-footer__back-to-top');
-
-if (backToTop) {
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (e.key === 'Escape') {
+      closeLightbox();
+      closeProject();
+    }
   });
 }

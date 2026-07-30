@@ -20,9 +20,11 @@
 </button>
 
 <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
+  <a href="#presentation">Présentation</a>
+  <a href="#competences">Compétences</a>
   <a href="#parcours">Parcours</a>
   <a href="#projets">Projets</a>
-  <a href="#competences">Compétences &amp; Expertise</a>
+  <a href="#services">Services</a>
   <a href="#contact">Contact</a>
 </nav>
     </header>
@@ -31,7 +33,10 @@
         <section id="hero" class="hero">
             <canvas class="hero__canvas"></canvas>
             <div class="hero__content">
-                <h1 class="hero__title">Développeur &amp; Designer.</h1>
+               <h1 class="hero__title">
+                <span class="hero__title-visible" aria-hidden="true"></span>
+                <span class="hero__title-sr-only sr-only">Développeur & Designer.</span>
+                </h1>            
                 <p class="hero__subtitle">Entre lignes de code et traits d'encre, je construis des expériences qui ont du caractère.</p>
                 <p class="hero__description">Des applications web robustes et des interfaces qui sortent du lot — nourries par une sensibilité graphique manga/comic assumée. Du backend Flask à la mise en page Figma, je donne une identité forte à chaque projet.</p>
             <div class="hero__cta-group">
@@ -45,35 +50,79 @@
             </div>
         </section>
 
-        <section id="parcours" class="parcours">
-            <div class="parcours__visual">
-            <h2 class="parcours__title">Mon Parcours</h2>
-            <p class="parcours__description">Étudiant en informatique à l'IFRI, je navigue entre deux passions qui se nourrissent l'une l'autre : le développement web et le design graphique à l'esthétique manga/comic. Du développement d'IFRI_MentorLink, une plateforme de mentorat étudiant, au développement d'un mockup institutionnel en passant par une landing page complète. Que ce soit en Python, en HTML/CSS structuré, en Flask ou sur Figma/Photoshop, j'aime construire des choses qui ont du sens ET du style.</p>
-            </div>
-            <div class="parcours__strengths">
-                <article class="parcours__strength">
-                    <div class="parcours__strength-diamond"></div>
-                    <div class="parcours__strength-content">
-                    <h3 class="parcours__strength-title">Rigueur et technique</h3>
-                    <p class="parcours__strength-text">Une architecture propre (BEM, code structuré), pensée pour durer et évoluer.</p>
-                    </div>
-               </article>
-                <article class="parcours__strength">
-                    <div class="parcours__strength-diamond"></div>
-                    <div class="parcours__strength-content">
-                        <h3 class="parcours__strength-title">Identité visuelle forte</h3>
-                        <p class="parcours__strength-text">Une sensibilité manga/comic qui transforme un simple projet en expérience mémorable.</p>
-                    </div>
-                </article>
-                <article class="parcours__strength">
-                    <div class="parcours__strength-diamond"></div>
-                    <div class="parcours__strength-content">
-                        <h3 class="parcours__strength-title">Polyvalence</h3>
-                        <p class="parcours__strength-text">À l'aise du backend (Flask, MySQL) au design (Figma, Penpot, Photoshop), en passant par l'IoT et l'électronique.</p>
-                    </div>
-                </article>
-            </div>
+        <section id="presentation" class="presentation">
+                    <div class="presentation__visual">
+            <div class="presentation__avatar-placeholder">
+                <span class="presentation__avatar-placeholder-text">Photo / Illustration à venir</span>
+             </div>
+        </div>
+
+        <div class="presentation__text">
+            <p class="presentation__eyebrow">Qui suis-je</p>
+            <h2 class="presentation__title">Développeur curieux, designer dans l'âme.</h2>
+            <p class="presentation__body">
+             Étudiant en informatique à l'IFRI (Université d'Abomey-Calavi), je navigue entre le développement web,
+            l'IoT et le design graphique. J'aime comprendre comment les choses fonctionnent — qu'il s'agisse
+            d'un algorithme de matching, d'un capteur qui détecte un mouvement, ou d'une mise en page qui capte l'œil.
+            Mon approche : rigueur technique d'un côté, sensibilité visuelle de l'autre, et les deux se nourrissent
+            constamment l'un l'autre.
+            </p>
+        </div>
+
         </section>
+
+        
+<section id="parcours" class="parcours">
+  <h2 class="parcours__title">Mon Parcours</h2>
+
+  <div class="parcours__columns">
+    <!-- Colonne 1 : timeline chronologique -->
+    <div class="parcours__timeline">
+      <div class="parcours__milestone">
+        <div class="parcours__milestone-marker"></div>
+        <div class="parcours__milestone-content">
+          <p class="parcours__milestone-date">2025-2026 — Aujourd'hui</p>
+          <h3 class="parcours__milestone-title">Étudiant L1 en Système embarqué et Internet des Objets à l'IFRI</h3>
+          <p class="parcours__milestone-text">Entre ligne ligne de code et équation mathématique,Cette année l’IFRI m’a permis de développer mes compétences en informatique à travers l’apprentissage de la programmation, du développement web et la réalisation de projets concrets. J’ai pu mettre en pratique mes connaissances en travaillant sur différentes solutions numériques, en améliorant ma capacité d’analyse et en développant mon autonomie. Cette expérience m’a également permis de renforcer mon esprit d’équipe, ma créativité et ma capacité à relever des défis techniques.</p>
+        </div>
+      </div>
+
+      <div class="parcours__milestone">
+        <div class="parcours__milestone-marker"></div>
+        <div class="parcours__milestone-content">
+          <p class="parcours__milestone-date">février à juin 2026</p>
+          <h3 class="parcours__milestone-title">Académie de programmation</h3>
+          <p class="parcours__milestone-text">Mon intégrationà l’Académie de Programmation m’a permis d’approfondir mes connaissances en développement informatique et de renforcer ma passion pour la programmation.à travers partage d'expériences , de réalisations  et projets visant à améliorer les compétences techniques des membres. Cette expérience m’a apporté une meilleure capacité de résolution de problèmes, plus de rigueur dans ma manière de coder et une approche plus collaborative du développement de solutions numériques.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colonne 2 : les 3 losanges existants -->
+    <div class="parcours__strengths">
+      <article class="parcours__strength">
+        <div class="parcours__strength-diamond"></div>
+        <div class="parcours__strength-content">
+          <h3 class="parcours__strength-title">Rigueur et technique</h3>
+          <p class="parcours__strength-text">Une architecture propre (BEM, code structuré), pensée pour durer et évoluer.</p>
+        </div>
+      </article>
+      <article class="parcours__strength">
+        <div class="parcours__strength-diamond"></div>
+        <div class="parcours__strength-content">
+          <h3 class="parcours__strength-title">Identité visuelle forte</h3>
+          <p class="parcours__strength-text">Une sensibilité manga/comic qui transforme un simple projet en expérience mémorable.</p>
+        </div>
+      </article>
+      <article class="parcours__strength">
+        <div class="parcours__strength-diamond"></div>
+        <div class="parcours__strength-content">
+          <h3 class="parcours__strength-title">Polyvalence</h3>
+          <p class="parcours__strength-text">À l'aise du backend (Flask, MySQL) au design (Figma, Penpot, Photoshop), en passant par l'IoT et l'électronique.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
     <section id="projets" class="projets">
         <canvas class="projets__canvas bg-canvas"></canvas>
