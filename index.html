@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
-    <title>Développeur & Designer</title>
+    <title>Développeur & Designer — Hakim</title>
     <meta name="description" content="Portfolio de KARIM ISSAOU Abdou-Hakim, étudiant en informatique à l'IFRI — développement web, IoT et design graphique.">
 </head>
 
@@ -22,8 +22,7 @@
 <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
   <a href="#parcours">Parcours</a>
   <a href="#projets">Projets</a>
-  <a href="#design">Design</a>
-  <a href="#competences">Compétences & Expertise</a>
+  <a href="#competences">Compétences &amp; Expertise</a>
   <a href="#contact">Contact</a>
 </nav>
     </header>
@@ -32,7 +31,7 @@
         <section id="hero" class="hero">
             <canvas class="hero__canvas"></canvas>
             <div class="hero__content">
-                <h1 class="hero__title">Développeur & Designer.</h1>
+                <h1 class="hero__title">Développeur &amp; Designer.</h1>
                 <p class="hero__subtitle">Entre lignes de code et traits d'encre, je construis des expériences qui ont du caractère.</p>
                 <p class="hero__description">Des applications web robustes et des interfaces qui sortent du lot — nourries par une sensibilité graphique manga/comic assumée. Du backend Flask à la mise en page Figma, je donne une identité forte à chaque projet.</p>
             <div class="hero__cta-group">
@@ -83,58 +82,129 @@
               <a href="projet.html" class="projets__cta-button">Voir mes projets</a>
          </div>
     </section>
-        <section id="design" class="design">
-            <h2 class="design__title">Design Graphique</h2>
-            <p class="design__intro">Une sensibilité manga/comic assumée, appliquée à la typographie, aux mises en page et aux effets visuels. Outils : Photoshop, Figma, Penpot.</p>
-            <div class="design__showcase">
-                <span class="design__showcase-text">HAKIM</span>
-            </div>
-        </section>
 
         <section id="competences" class="competences">
-            <h2 class="competences__title">Compétences & Expertise</h2>
+  <h2 class="competences__title">Compétences & Expertise</h2>
 
-            <article class="competences__item">
-                <h3 class="competences__item-title">Hard Skills</h3>
-                <p class="competences__item-text">Python, Flask, MySQL, HTML/CSS (méthodologie BEM), JavaScript, Bootstrap</p>
-            </article>
+  <div class="competences__grid">
+    <article class="competences__item">
+      <h3 class="competences__item-title">Hard Skills</h3>
+      <div class="competences__skills">
+        <span class="competences__skill">Python</span>
+        <span class="competences__skill">Flask</span>
+        <span class="competences__skill">MySQL</span>
+        <span class="competences__skill">HTML/CSS (BEM)</span>
+        <span class="competences__skill">JavaScript</span>
+        <span class="competences__skill">Bootstrap</span>
+      </div>
+    </article>
 
-            <article class="competences__item">
-                <h3 class="competences__item-title">Soft Skills</h3>
-                <p class="competences__item-text">Sens du détail, autonomie, esprit entrepreneurial, communication technique</p>
-            </article>
+    <article class="competences__item">
+      <h3 class="competences__item-title">Soft Skills</h3>
+      <div class="competences__skills">
+        <span class="competences__skill">Sens du détail</span>
+        <span class="competences__skill">Autonomie</span>
+        <span class="competences__skill">Esprit entrepreneurial</span>
+        <span class="competences__skill">Communication technique</span>
+      </div>
+    </article>
 
-            <article class="competences__item">
-                <h3 class="competences__item-title">IoT & Embarquée</h3>
-                <p class="competences__item-text">Arduino, Tinkercad, prototypage de capteurs, MQTT, Node-RED</p>
-            </article>
+    <article class="competences__item">
+      <h3 class="competences__item-title">IoT & Prototypage</h3>
+      <div class="competences__skills">
+        <span class="competences__skill">Arduino</span>
+        <span class="competences__skill">Tinkercad</span>
+        <span class="competences__skill">MQTT</span>
+        <span class="competences__skill">Node-RED</span>
+      </div>
+    </article>
 
-            <article class="competences__item">
-                <h3 class="competences__item-title">Design & Outils</h3>
-                <p class="competences__item-text">Figma, Penpot, Photoshop, Git/GitHub</p>
-            </article>
-        </section>
+    <article class="competences__item">
+      <h3 class="competences__item-title">Design & Outils</h3>
+      <div class="competences__skills">
+        <span class="competences__skill">Figma</span>
+        <span class="competences__skill">Penpot</span>
+        <span class="competences__skill">VSCode</span>
+        <span class="competences__skill">Photoshop</span>
+        <span class="competences__skill">Git/GitHub</span>
+      </div>
+    </article>
+  </div>
+</section>
 
         <section id="contact" class="contact">
-            <h2 class="contact__title">Un projet web, IoT ou design en tête ? Construisons-le ensemble.</h2>
-            <p class="contact__intro">Étudiant en informatique curieux et créatif. Que ce soit pour un projet, un stage ou juste échanger, écris-moi.</p>
-            <form class="contact__form" action="#" method="post">
-                <label for="name">Nom :</label>
-                <input type="text" id="name" name="name" required>
+  <h2 class="contact__title">Un projet web, IoT ou design en tête ? Construisons-le ensemble.</h2>
+  <p class="contact__intro">Étudiant en informatique curieux et créatif. Que ce soit pour un projet, un stage ou juste échanger, écris-moi.</p>
 
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" required>
+  <form class="contact__form" action="https://formspree.io/f/xeeywagy" method="POST">
+    <div class="contact__field">
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="name" required>
+    </div>
 
-                <label for="message">Message :</label>
-                <textarea id="message" name="message" required></textarea>
+    <div class="contact__field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
 
-                <button type="submit">Envoyer</button>
-            </form>
-        </section>
+    <div class="contact__field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+
+    <button type="submit" class="contact__submit">Envoyer</button>
+  </form>
+</section>
     </main>
 
-    <footer class="site-footer">
-        <p class="site-footer__text">&copy; 2026 Hakim. Tous droits réservés.</p>
-    </footer>
+<footer class="site-footer">
+  <div class="site-footer__top">
+    <div class="site-footer__brand">
+      <p class="site-footer__logo">KARIM ISSAOU Abdou-Hakim</p>
+      <p class="site-footer__tagline">Création web rigoureuse et direction visuelle manga.</p>
+      <div class="site-footer__contact">
+        <a href="tel:+22994302790">(+229) 94 30 27 90</a>
+        <a href="mailto:hakim.issaou@example.com">karimdutrez07@gmail.com</a>
+      </div>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Navigation du pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="index.html#parcours">Parcours</a>
+      <a href="index.html#projets">Projets</a>
+      <a href="index.html#competences">Compétences</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="site-footer__visual">
+      <img src="images/footer-visual.png" alt="" class="site-footer__visual-img">
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <div class="site-footer__socials">
+      <a href="https://github.com/Kim-AII" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/hakim-issaou-676a4a39b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.025-3.04-1.85-3.04-1.855 0-2.14 1.445-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.475-.9 1.635-1.85 3.365-1.85 3.6 0 4.265 2.37 4.265 5.455v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+        </svg>
+      </a>
+      <a href="https://wa.me/22994302790" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.42 1.27 4.86L2 22l5.36-1.36a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.79 14.13c-.24.68-1.4 1.3-1.93 1.34-.5.05-1.02.24-3.4-.71-2.88-1.15-4.72-4.06-4.86-4.25-.14-.19-1.17-1.55-1.17-2.96s.73-2.1.99-2.39c.26-.28.56-.35.75-.35.19 0 .38 0 .54.01.18.01.4-.07.63.48.24.58.81 1.99.88 2.13.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.13.57.17.28.75 1.24 1.61 2.01 1.11.99 2.05 1.3 2.33 1.44.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.63-.14.26.09 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="site-footer__meta">
+      <button class="site-footer__back-to-top" aria-label="Remonter en haut de page">&uarr;</button>
+      <p class="site-footer__copyright">&copy; 2026 Hakim. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

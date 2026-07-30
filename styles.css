@@ -112,6 +112,8 @@ h1, h2, h3 {
 .hero__canvas {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
 }
 
@@ -533,4 +535,371 @@ h1, h2, h3 {
 .project-overlay__links a:hover {
   border-color: var(--color-solder);
   color: var(--color-solder);
+}
+
+/* === Header positionning fix === */
+.site-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200;
+}
+
+/* === Page projets — éléments manquants === */
+.projets-page {
+  padding: 7rem 2rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.projets-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--color-signal);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: gap 0.2s ease;
+}
+
+.projets-page__back:hover {
+  gap: 0.75rem;
+  color: var(--color-paper);
+}
+
+.projets-page__title {
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  color: var(--color-paper);
+  margin-bottom: 2.5rem;
+  letter-spacing: -1px;
+}
+
+/* Tags dans les cartes projets */
+.projets-page__card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.projets-page__card-tags span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--color-graphite);
+  border-radius: 100px;
+  color: var(--color-graphite);
+  background-color: transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.projets-page__card:hover .projets-page__card-tags span {
+  border-color: var(--color-signal);
+  color: var(--color-signal);
+}
+
+/* === Animation reveal au scroll === */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Délais décalés pour les cartes et items */
+.projets-page__card:nth-child(2).reveal,
+.competences__item:nth-child(2).reveal {
+  transition-delay: 0.1s;
+}
+.projets-page__card:nth-child(3).reveal,
+.competences__item:nth-child(3).reveal {
+  transition-delay: 0.2s;
+}
+.projets-page__card:nth-child(4).reveal,
+.competences__item:nth-child(4).reveal {
+  transition-delay: 0.3s;
+}
+.projets-page__card:nth-child(5).reveal {
+  transition-delay: 0.4s;
+}
+
+.competences__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 2.5rem;
+  padding: 2rem;
+}
+
+.competences__item {
+  position: relative;
+  background-color: var(--color-ink-soft);
+  border: 1px solid var(--color-graphite);
+  border-radius: 4px;
+  padding: 2rem 1.5rem;
+}
+
+/* Les "pattes" de la puce — une bande de pins répétés sur les côtés gauche et droit */
+.competences__item::before,
+.competences__item::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  width: 10px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--color-solder) 0px,
+    var(--color-solder) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.competences__item::before {
+  left: -10px;
+}
+
+.competences__item::after {
+  right: -10px;
+}
+
+.competences__item-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-signal);
+  margin-bottom: 1.25rem;
+}
+
+.competences__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.competences__skill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--color-ink);
+  border: 1px solid var(--color-graphite);
+  border-radius: 4px;
+  color: var(--color-paper);
+}
+
+@media (max-width: 700px) {
+  .competences__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.contact__title {
+  font-size: clamp(24px, 3.5vw, 36px);
+  margin-bottom: 1rem;
+}
+
+.contact__intro {
+  color: var(--color-graphite);
+  margin-bottom: 2.5rem;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact__field label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-graphite);
+}
+
+.contact__field input,
+.contact__field textarea {
+  background-color: var(--color-ink-soft);
+  border: 1px solid var(--color-graphite);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  color: var(--color-paper);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* La bordure néon, seulement quand le champ est actif */
+.contact__field input:focus,
+.contact__field textarea:focus {
+  outline: none; /* on retire le contour bleu par défaut du navigateur */
+  border-color: var(--color-signal);
+  box-shadow: 0 0 8px var(--color-signal);
+}
+
+.contact__submit {
+  align-self: flex-start;
+  color: var(--color-solder);
+  font-size: 1.1rem;
+  padding: 0.75rem 2rem;
+  background: var(--color-ink-soft);
+  border: 1px solid var(--color-graphite);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact__submit:hover {
+  border-color: var(--color-solder);
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-graphite);
+  padding: 4rem 2rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.site-footer__top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.site-footer__logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.site-footer__tagline {
+  color: var(--color-graphite);
+  font-size: 0.9rem;
+  max-width: 32ch;
+  margin-bottom: 1.25rem;
+}
+
+.site-footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.site-footer__contact a {
+  color: var(--color-paper);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.site-footer__contact a:hover {
+  color: var(--color-signal);
+}
+
+.site-footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.site-footer__nav a {
+  color: var(--color-paper);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.site-footer__nav a:hover {
+  color: var(--color-signal);
+}
+
+.site-footer__visual-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  opacity: 0.85;
+}
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-graphite);
+}
+
+.site-footer__socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.site-footer__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-graphite);
+  color: var(--color-paper);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.site-footer__socials a:hover {
+  border-color: var(--color-signal);
+  color: var(--color-signal);
+}
+
+.site-footer__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-footer__back-to-top {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-graphite);
+  background-color: var(--color-ink-soft);
+  color: var(--color-signal);
+  cursor: pointer;
+}
+
+.site-footer__copyright {
+  font-size: 0.75rem;
+  color: var(--color-graphite);
+}
+
+@media (max-width: 800px) {
+  .site-footer__top {
+    grid-template-columns: 1fr;
+  }
 }
