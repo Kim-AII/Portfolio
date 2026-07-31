@@ -4,13 +4,73 @@
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.site-nav');
 
+function closeNav() {
+  if (!toggle || !nav) return;
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.classList.remove('is-open');
+  nav.classList.remove('is-open');
+}
+
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', !isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
     toggle.classList.toggle('is-open');
     nav.classList.toggle('is-open');
   });
+
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeNav);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeNav();
+  });
+}
+
+
+// ============================================
+// Animations reveal au scroll
+// ============================================
+const revealSelectors = [
+  '.presentation__visual',
+  '.presentation__text',
+  '.projets__cta-content',
+  '.parcours__title',
+  '.parcours__timeline',
+  '.parcours__strengths',
+  '.competences__title',
+  '.competences__item',
+  '.contact__intro-block',
+  '.contact__columns',
+  '.projets-page__card',
+  '.site-footer__top',
+  '.site-footer__bottom'
+];
+
+const revealElements = document.querySelectorAll(revealSelectors.join(', '));
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (revealElements.length > 0) {
+  revealElements.forEach((el) => el.classList.add('reveal'));
+
+  if (prefersReducedMotion) {
+    revealElements.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  }
 }
 
 
@@ -61,6 +121,8 @@ if (heroTitleVisible) {
 function initDotGrid(canvasEl, waves = null) {
   const ctx = canvasEl.getContext('2d');
   let mouse = { x: -1000, y: -1000 };
+  let isActive = true;
+  let animationId = null;
   const spacing = 24;
   const maxDistance = 150;
 
@@ -70,6 +132,8 @@ function initDotGrid(canvasEl, waves = null) {
   }
 
   function draw() {
+    if (!isActive) return;
+
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
     for (let x = 0; x < canvasEl.width; x += spacing) {
@@ -115,20 +179,48 @@ function initDotGrid(canvasEl, waves = null) {
       }
     }
 
-    requestAnimationFrame(draw);
+    animationId = requestAnimationFrame(draw);
+  }
+
+  function start() {
+    if (isActive) return;
+    isActive = true;
+    draw();
+  }
+
+  function stop() {
+    isActive = false;
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
   }
 
   window.addEventListener('resize', resize);
 
   const rect = () => canvasEl.getBoundingClientRect();
   window.addEventListener('mousemove', (e) => {
+    if (!isActive) return;
     const r = rect();
     mouse.x = e.clientX - r.left;
     mouse.y = e.clientY - r.top;
   });
 
+  if (!prefersReducedMotion) {
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) start();
+          else stop();
+        });
+      },
+      { threshold: 0.05 }
+    );
+    visibilityObserver.observe(canvasEl);
+  }
+
   resize();
-  draw();
+  if (!prefersReducedMotion) draw();
 }
 
 const heroWaves = [];
