@@ -388,11 +388,12 @@ h1, h2, h3 {
 
 /* --- Colonne 2 : losanges, maintenant empilés verticalement --- */
 .parcours__strengths {
+  flex-direction: column; /* changé : était "row" avant */
   position: relative;
   display: flex;
-  flex-direction: column; /* changé : était "row" avant */
   align-items: center;
   gap: 2rem;
+  padding-bottom: 3rem; /* absorbe le débordement du dernier losange */
 }
 
 /* La ligne de connexion devient verticale au lieu d'horizontale */
@@ -486,6 +487,11 @@ h1, h2, h3 {
   .parcours__strengths {
     flex-direction: column;
     gap: 4rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3rem; /* absorbe le débordement du dernier losange */
   }
   .parcours__strengths::before {
     left: 50%;
@@ -991,6 +997,9 @@ h1, h2, h3 {
   }
 }
 
+
+/* === Page Contact === */
+
 .contact {
   max-width: 600px;
   margin: 0 auto;
@@ -1061,6 +1070,89 @@ h1, h2, h3 {
 
 .contact__submit:hover {
   border-color: var(--color-solder);
+}
+.contact {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.contact__intro-block {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact__title {
+  font-size: clamp(24px, 3.5vw, 36px);
+  margin-bottom: 1rem;
+}
+
+.contact__intro {
+  color: var(--color-graphite);
+  max-width: 55ch;
+  margin: 0 auto;
+}
+
+.contact__columns {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  border: 1px solid var(--color-graphite);
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  background-color: var(--color-ink-graphite);
+}
+
+/* Le formulaire garde exactement le CSS qu'on avait déjà (.contact__form, .contact__field, etc.) */
+
+.contact__direct {
+  background-color: var(--color-ink-soft);
+  border: 1px solid var(--color-graphite);
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact__direct-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-signal);
+}
+
+.contact__direct-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-paper);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.25s ease;
+}
+
+.contact__direct-link:hover {
+  color: var(--color-signal);
+}
+
+.contact__direct-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-graphite);
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .contact__columns {
+    grid-template-columns: 1fr;
+  }
 }
 
 .site-footer {
